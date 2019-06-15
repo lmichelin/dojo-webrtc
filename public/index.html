@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dojo WebRTC</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+	<section>
+		<div class="header">
+			<h1 class="title">Dojo WebRTC</h1>
+			<button id="startButton" class="button">Démarrer l'émission de mon flux vidéo</button>
+		</div>
+		<video id="video" class="video" controls autoplay></video>
+	</section>
+
+	<script src="socket.io/socket.io.js"></script>
+	<script src="simplepeer.min.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>

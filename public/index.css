@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.title {
+  margin: 4px 0;
+}
+
+.button {
+  margin-left: 8px;
+}
+
+.video {
+  width: 100%;
+}
