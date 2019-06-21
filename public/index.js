@@ -13,4 +13,16 @@ const startStream = async () => {
   }
 }
 
+const initWebRTCSession = () => {
+  const peer = new SimplePeer({
+    initiator: true,
+    trickle: false,
+  })
+
+  peer.on("signal", signal => {
+    console.log(signal)
+  })
+}
+
 startStream()
+initWebRTCSession()
