@@ -22,7 +22,7 @@ const initWebRTCSession = () => {
   })
 
   peer.on("signal", signal => {
-    console.log(signal)
+    socket.emit("offer", signal)
   })
 }
 

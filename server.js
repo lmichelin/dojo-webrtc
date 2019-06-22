@@ -20,7 +20,9 @@ const httpsServer = https.createServer(
 const io = socketIO(httpsServer)
 
 io.on("connection", socket => {
-  console.log(socket.id)
+  socket.on("offer", signal => {
+    console.log(signal)
+  })
 })
 
 const server = httpsServer.listen(port, () => {
