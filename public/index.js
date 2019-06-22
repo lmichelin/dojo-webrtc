@@ -24,5 +24,8 @@ const initWebRTCSession = () => {
   })
 }
 
+const startButton = document.getElementById("startButton")
+
+startButton.addEventListener("click", initWebRTCSession)
+
 startStream()
-initWebRTCSession()
