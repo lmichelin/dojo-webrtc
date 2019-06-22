@@ -1,6 +1,7 @@
 const express = require("express")
 const https = require("https")
 const fs = require("fs")
+const socketIO = require("socket.io")
 
 const port = 8443
 
@@ -15,6 +16,12 @@ const httpsServer = https.createServer(
   },
   app,
 )
+
+const io = socketIO(httpsServer)
+
+io.on("connection", socket => {
+  console.log(socket.id)
+})
 
 const server = httpsServer.listen(port, () => {
   console.log(`Server listening at https://localhost:${port}`)

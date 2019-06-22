@@ -1,3 +1,5 @@
+const socket = io.connect("/")
+
 const startStream = async () => {
   const videoElement = document.getElementById("video")
 
