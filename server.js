@@ -21,7 +21,7 @@ const io = socketIO(httpsServer)
 
 io.on("connection", socket => {
   socket.on("offer", signal => {
-    console.log(signal)
+    socket.broadcast.emit("offer", signal)
   })
 })
 

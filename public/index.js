@@ -1,5 +1,9 @@
 const socket = io.connect("/")
 
+socket.on("offer", signal => {
+  console.log(signal)
+})
+
 const startStream = async () => {
   const videoElement = document.getElementById("video")
 
