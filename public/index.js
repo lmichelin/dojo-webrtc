@@ -28,6 +28,14 @@ const initWebRTCSession = () => {
   peer.on("signal", signal => {
     socket.emit("offer", signal)
   })
+
+  socket.on("answer", answer => {
+    peer.signal(answer)
+  })
+
+  peer.on("connect", () => {
+    console.log("connected")
+  })
 }
 
 const receiveWebRTCSession = offer => {
@@ -36,7 +44,7 @@ const receiveWebRTCSession = offer => {
   peer.signal(offer)
 
   peer.on("signal", answer => {
-    console.log("answer", answer)
+    socket.emit("answer", answer)
   })
 }
 

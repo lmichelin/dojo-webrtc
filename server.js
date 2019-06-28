@@ -23,6 +23,10 @@ io.on("connection", socket => {
   socket.on("offer", signal => {
     socket.broadcast.emit("offer", signal)
   })
+
+  socket.on("answer", answer => {
+    socket.broadcast.emit("answer", answer)
+  })
 })
 
 const server = httpsServer.listen(port, () => {
