@@ -1,7 +1,7 @@
 const socket = io.connect("/")
 
 socket.on("offer", signal => {
-  console.log(signal)
+  receiveWebRTCSession(signal)
 })
 
 const startStream = async () => {
@@ -30,8 +30,16 @@ const initWebRTCSession = () => {
   })
 }
 
+const receiveWebRTCSession = offer => {
+  const peer = new SimplePeer({})
+
+  peer.signal(offer)
+
+  peer.on("signal", answer => {
+    console.log("answer", answer)
+  })
+}
+
 const startButton = document.getElementById("startButton")
 
 startButton.addEventListener("click", initWebRTCSession)
-
-startStream()
