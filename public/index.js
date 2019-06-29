@@ -5,24 +5,22 @@ socket.on("offer", signal => {
 })
 
 const startStream = async () => {
-  const videoElement = document.getElementById("video")
-
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: true,
       audio: true,
     })
-
-    videoElement.srcObject = stream
+    initWebRTCSession(stream)
   } catch (error) {
     console.error(error)
   }
 }
 
-const initWebRTCSession = () => {
+const initWebRTCSession = stream => {
   const peer = new SimplePeer({
     initiator: true,
     trickle: false,
+    stream,
   })
 
   peer.on("signal", signal => {
@@ -46,8 +44,14 @@ const receiveWebRTCSession = offer => {
   peer.on("signal", answer => {
     socket.emit("answer", answer)
   })
+
+  const videoElement = document.getElementById("video")
+
+  peer.on("stream", stream => {
+    videoElement.srcObject = stream
+  })
 }
 
 const startButton = document.getElementById("startButton")
 
-startButton.addEventListener("click", initWebRTCSession)
+startButton.addEventListener("click", startStream)
