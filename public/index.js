@@ -13,4 +13,16 @@ const startStream = async () => {
   }
 }
 
+const initWebRTCSession = async () => {
+  const configuration = {}
+
+  const pc = new RTCPeerConnection(configuration)
+  const offer = await pc.createOffer()
+  pc.setLocalDescription(offer)
+
+  // send any ice candidates to the other peer
+  pc.onicecandidate = ({ candidate }) => console.log({ candidate })
+}
+
 startStream()
+initWebRTCSession()
